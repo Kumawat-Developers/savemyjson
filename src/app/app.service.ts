@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  url="http://localhost/slim/";
+  //url="http://localhost/slim/";
+  url="https://callphpmydear.000webhostapp.com/";
   constructor(private httpClient:HttpClient) { }
 
   get(id:number): Observable<any>{
