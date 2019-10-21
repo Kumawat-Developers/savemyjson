@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+:host ::ng-deep json-editor,
+:host ::ng-deep json-editor .jsoneditor,
+:host ::ng-deep json-editor > div,
+:host ::ng-deep json-editor jsoneditor-outer {
+  height: 500px;
+  width: 400px;
+}
