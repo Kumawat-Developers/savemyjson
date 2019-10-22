@@ -9,11 +9,13 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from 'primeng/button';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { MyjsonComponent } from './myjson/myjson.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MyjsonComponent,
     
   ],
   imports: [

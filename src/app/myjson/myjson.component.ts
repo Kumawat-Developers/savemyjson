@@ -1,57 +1,55 @@
+
+import { ActivatedRoute } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
-import { AppService } from './app.service';
-import { appModel, appStatus } from './shared/appModel';
-
-
+import { AppService } from '../app.service';
+import { appModel, appStatus } from '../shared/appModel';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-myjson',
+  templateUrl: './myjson.component.html',
+  styleUrls: ['./myjson.component.css']
 })
-export class AppComponent {
- 
+export class MyjsonComponent implements OnInit {
+  public data: any;
+  public appData:any;
+  public myJsonId;
+  public json: string;
+  public appModel: appModel;
+  public appStatus: appStatus;
+  //public data: any;
+  public newData: any;
   public editorOptions: JsonEditorOptions;
   public editorOption: JsonEditorOptions;
-  public data: any;
-  public newData: any;
-  
-  public json:string; 
-  
-  public appModel:appModel;
-  public appStatus:appStatus;
-  public appData:any;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
-  
-  title = 'Angularcall';
+  constructor(private route: ActivatedRoute, private appService: AppService) {
 
-  constructor(private appService:AppService) { 
-    
-    this.appModel=new appModel();
+
     this.editorOptions = new JsonEditorOptions()
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
     this.editorOption = new JsonEditorOptions()
     this.editorOption.modes = ['code', 'text', 'tree', 'view'];
-    this.appService.get(1).subscribe(
-    
-      data=>{
-    
+
+  }
+
+  ngOnInit() {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.myJsonId = id;
+    this.appService.get(id).subscribe(
+
+      data => {
+
         console.log(data);
-        this.json=data;
-        this.appModel=data;
+        this.json = data;
+        this.appModel = data;
         console.log(this.appModel.flashlight);
-        this.data=this.json;
-      }    );  
-    // set all allowed modes
-    //this.options.mode = 'code'; //set only one mode
-      //this.data = {"products":[{"name":"car","product":[{"name":"honda","model":[{"id":"civic","name":"civic"},{"id":"accord","name":"accord"},{"id":"crv","name":"crv"},{"id":"pilot","name":"pilot"},{"id":"odyssey","name":"odyssey"}]}]}]}
-     
+        this.data = this.json;
+      });
   }
   getData(event:Event){
     this.data= this.editor.get();
 console.log(this.data);
-this.appService.post(this.data,1);
+this.appService.post(this.data,this.myJsonId);
 
   }
   postData()
@@ -68,5 +66,4 @@ this.appService.post(this.data,1);
     });
     console.log( this.newData);
   }
-  
 }
