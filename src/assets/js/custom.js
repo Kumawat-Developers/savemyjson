@@ -8,19 +8,6 @@
       $('.main_menu').removeClass('menu_fixed animated fadeInDown');
     }
   });
-  
-  $(".popup-youtube, .popup-vimeo").magnificPopup({
-    // disableOn: 700,
-    type: "iframe",
-    mainClass: "mfp-fade",
-    removalDelay: 160,
-    preloader: false,
-    fixedContentPos: false
-  });
-
-  $(document).ready(function() {
-    $("select").niceSelect();
-  });
 
   var client_logo = $(".client_logo_slider");
   if (client_logo.length) {
@@ -89,15 +76,6 @@
         }
       });
     }
-
-    $(".popup-youtube, .popup-vimeo").magnificPopup({
-      // disableOn: 700,
-      type: "iframe",
-      mainClass: "mfp-fade",
-      removalDelay: 160,
-      preloader: false,
-      fixedContentPos: false
-    });
   });
 
 })(jQuery);
