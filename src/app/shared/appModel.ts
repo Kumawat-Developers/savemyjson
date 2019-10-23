@@ -1,8 +1,8 @@
-export class appModel {
+export class AppModel {
     flashlight: boolean;
     screen: boolean;
     recoding: boolean;
   }
-export class appStatus {
+export class AppStatus {
   post_id: number;
   }

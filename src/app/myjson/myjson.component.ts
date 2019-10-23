@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { AppService } from '../app.service';
-import { appModel, appStatus } from '../shared/appModel';
+import { AppModel, AppStatus } from '../shared/appModel';
 @Component({
   selector: 'app-myjson',
   templateUrl: './myjson.component.html',
@@ -14,9 +14,8 @@ export class MyjsonComponent implements OnInit {
   public appData: any;
   public myJsonId;
   public json: string;
-  public appModel: appModel;
-  public appStatus: appStatus;
-  //public data: any;
+  public appModel: AppModel;
+  public appStatus: AppStatus;
   public newData: any;
   public editorOptions: JsonEditorOptions;
   public editorOption: JsonEditorOptions;
@@ -25,15 +24,15 @@ export class MyjsonComponent implements OnInit {
   constructor(private route: ActivatedRoute, private appService: AppService) {
 
 
-    this.editorOptions = new JsonEditorOptions()
+    this.editorOptions = new JsonEditorOptions();
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
-    this.editorOption = new JsonEditorOptions()
+    this.editorOption = new JsonEditorOptions();
     this.editorOption.modes = ['code', 'text', 'tree', 'view'];
 
   }
 
   ngOnInit() {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.myJsonId = id;
     this.appService.get(id).subscribe(
 

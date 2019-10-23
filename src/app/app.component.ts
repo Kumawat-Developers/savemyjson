@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { AppService } from './app.service';
-import { appModel, appStatus } from './shared/appModel';
+import { AppModel, AppStatus } from './shared/appModel';
 
 
 @Component({
@@ -18,8 +18,8 @@ export class AppComponent {
 
   public json: string;
 
-  public appModel: appModel;
-  public appStatus: appStatus;
+  public appModel: AppModel;
+  public appStatus: AppStatus;
   public appData: any;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
@@ -28,7 +28,7 @@ export class AppComponent {
 
   constructor(private appService: AppService) {
 
-    this.appModel = new appModel();
+    this.appModel = new AppModel();
     this.editorOptions = new JsonEditorOptions()
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
     this.editorOption = new JsonEditorOptions()
