@@ -10,12 +10,14 @@ import {FormsModule} from "@angular/forms";
 import {ButtonModule} from 'primeng/button';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { MyjsonComponent } from './myjson/myjson.component';
+import { NewjsonComponent } from './newjson/newjson.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MyjsonComponent,
+    NewjsonComponent,
     
   ],
   imports: [
