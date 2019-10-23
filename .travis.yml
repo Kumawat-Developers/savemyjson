@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "10.16"
+cache:
+  directories:
+  - node_modules
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - npm install -g @angular/cli
+script:
+- ng lint
+- ng build --prod --base-href https://kumawat-developers.github.io/savemyjson/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/Angularcall
+  on:
+    branch: master
