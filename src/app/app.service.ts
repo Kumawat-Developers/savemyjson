@@ -20,9 +20,8 @@ export class AppService {
     return this.httpClient.post(baseUrl, formData).toPromise().then(data => {
       console.log(data);
     });
-
   }
-  
+
   postAdd(text: string) {
     const formData: FormData = new FormData();
     formData.append('json', JSON.stringify(text));
