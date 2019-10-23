@@ -15,23 +15,21 @@ export class AppComponent {
   public editorOption: JsonEditorOptions;
   public data: any;
   public newData: any;
-
   public json: string;
-
   public appModel: AppModel;
   public appStatus: AppStatus;
   public appData: any;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
 
-  title = 'Angularcall';
+  title = 'Angularcall gfgfd';
 
   constructor(private appService: AppService) {
 
     this.appModel = new AppModel();
-    this.editorOptions = new JsonEditorOptions()
+    this.editorOptions = new JsonEditorOptions();
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
-    this.editorOption = new JsonEditorOptions()
+    this.editorOption = new JsonEditorOptions();
     this.editorOption.modes = ['code', 'text', 'tree', 'view'];
     this.appService.get(1).subscribe(
 
