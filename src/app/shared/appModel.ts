@@ -4,5 +4,5 @@ export class AppModel {
     recoding: boolean;
   }
 export class AppStatus {
-  post_id: number;
+  postid: number;
   }

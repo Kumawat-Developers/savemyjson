@@ -55,7 +55,7 @@ export class NewjsonComponent implements OnInit {
     this.appService.postAdd(this.newData).toPromise().then(data => {
       this.appData = data;
       this.appStatus = this.appData;
-      this.router.navigateByUrl('myjson/' + this.appStatus.post_id);
+      this.router.navigateByUrl('myjson/' + this.appStatus.postid);
     });
     console.log(this.newData);
   }
