@@ -22,22 +22,19 @@ export class MyjsonComponent implements OnInit {
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
   constructor(private route: ActivatedRoute, private appService: AppService) {
-
-
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
     this.editorOption = new JsonEditorOptions();
     this.editorOption.modes = ['code', 'text', 'tree', 'view'];
-
   }
 
   ngOnInit() {
+
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.myJsonId = id;
     this.appService.get(id).subscribe(
 
       data => {
-
         console.log(data);
         this.json = data;
         this.appModel = data;
@@ -45,13 +42,17 @@ export class MyjsonComponent implements OnInit {
         this.data = this.json;
       });
   }
+
   getData(event: Event) {
+
     this.data = this.editor.get();
     console.log(this.data);
     this.appService.post(this.data, this.myJsonId);
 
   }
+
   postData() {
+
     this.newData = this.editorr.get();
     this.appService.postAdd(this.newData).toPromise().then(data => {
       this.appData = data;
@@ -59,4 +60,5 @@ export class MyjsonComponent implements OnInit {
     });
     console.log(this.newData);
   }
+
 }

@@ -44,11 +44,12 @@ export class NewjsonComponent implements OnInit {
 
   ngOnInit() {
   }
+
   getData(event: Event) {
     this.data = this.editor.get();
     this.appService.post(this.data, 1);
-
   }
+
   postData() {
     this.newData = this.editorr.get();
     this.appService.postAdd(this.newData).toPromise().then(data => {
