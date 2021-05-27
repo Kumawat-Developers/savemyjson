@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { MyjsonComponent } from './myjson/myjson.component';
 import { NewjsonComponent } from './newjson/newjson.component';
-
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,8 @@ import { NewjsonComponent } from './newjson/newjson.component';
     FormsModule,
     ButtonModule,
     NgJsonEditorModule,
+    ClipboardModule,
+
 
   ],
   providers: [],

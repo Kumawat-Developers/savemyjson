@@ -1,5 +1,5 @@
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Params} from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { AppService } from '../app.service';
@@ -30,17 +30,29 @@ export class MyjsonComponent implements OnInit {
 
   ngOnInit() {
 
-    const id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.myJsonId = id;
-    this.appService.get(id).subscribe(
 
-      data => {
-        console.log(data);
-        this.json = data;
-        this.appModel = data;
-        console.log(this.appModel.flashlight);
-        this.data = this.json;
-      });
+    this.route.params.subscribe((params: Params) => {
+      let id = params["id"];
+
+
+      console.log(id);
+    
+      this.myJsonId = id;
+      this.appService.findJson(id).subscribe(
+  
+        data => {
+          console.log(JSON.parse(data.json));
+          this.json = JSON.parse(data.json);
+          this.data = JSON.parse(data.json);
+          //this.appModel = data;
+          console.log( JSON.stringify(data.json));
+          //this.data = this.json;
+        });
+    });
+
+    
+
+
   }
 
   getData(event: Event) {
