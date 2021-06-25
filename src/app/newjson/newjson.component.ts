@@ -7,11 +7,13 @@ import { ClipboardService } from 'ngx-clipboard'
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MessageService } from 'primeng/api';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { Subscription } from 'rxjs';
+import { OnExecuteData } from 'ng-recaptcha';
 @Component({
   selector: 'app-newjson',
   templateUrl: './newjson.component.html',
   styleUrls: ['./newjson.component.css'],
-  providers: [MessageService,ReCaptchaV3Service]
+  providers: [MessageService, ReCaptchaV3Service]
 })
 export class NewjsonComponent implements OnInit {
   public editorOptions: JsonEditorOptions;
@@ -31,6 +33,8 @@ export class NewjsonComponent implements OnInit {
   public appData: any;
   public existingJson = [];
   public todayQuote: string;
+  public errors: string;
+  private subscription: Subscription;
   router: Router;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
@@ -63,10 +67,21 @@ export class NewjsonComponent implements OnInit {
     this.existingJson = jsonValues;
     console.log(this.existingJson);
     this.getQuotes();
+    this.subscription = this.recaptchaV3Service.onExecute
+    .subscribe((data: OnExecuteData) => {
+      console.log("DATA: ", data);
+    });
   }
-  public executeImportantAction(): void {
+  public preSubmitForm(): void {
     this.recaptchaV3Service.execute('importantAction')
-      .subscribe((token) => this.handleToken(token));
+      .subscribe((token) => { 
+        console.log("What do I do with this?: ", token)
+      });
+  }
+  public ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   handleToken(val) {
     console.log("handleToken")
