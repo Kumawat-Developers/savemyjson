@@ -26,6 +26,7 @@ export class NewjsonComponent implements OnInit {
   public appStatus: AppStatus;
   public appData: any;
   public existingJson = [];
+  public todayQuote: string;
   router: Router;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
@@ -56,7 +57,7 @@ export class NewjsonComponent implements OnInit {
     var jsonValues = JSON.parse(localStorage.getItem("savemyjson") || "[]");
     this.existingJson = jsonValues;
     console.log(this.existingJson);
-
+    this.getQuotes();
   }
 
   getData(event: Event) {
@@ -110,8 +111,8 @@ export class NewjsonComponent implements OnInit {
   copyAPI() {
     this._clipboardService.copy(this.api);
   }
-  copyLink(val){
-    this._clipboardService.copy(this.api); 
+  copyLink(val) {
+    this._clipboardService.copy(this.api);
   }
   kkk() {
 
@@ -125,5 +126,18 @@ export class NewjsonComponent implements OnInit {
     }
     users.push(request);
     localStorage.setItem('savemyjson', JSON.stringify(users));
+  }
+
+  getQuotes() {
+    this.appService.getQuotes().subscribe(
+
+      data => {
+        this.todayQuote = data[0].q;
+        console.log(this.todayQuote );
+        
+        //this.data = this.json;
+      });
+
+
   }
 }

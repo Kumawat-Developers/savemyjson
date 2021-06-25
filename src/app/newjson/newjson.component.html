@@ -4,9 +4,8 @@
     <div class="row align-items-center">
       <div class="col-lg-12">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="index.html">
-            <img src="assets/img/logo.png" alt="logo" /> <span style="color: aliceblue; padding-top: 20px;;">Save my
-              json</span>
+          <a class="navbar-brand" href="#">
+            <span style="color: aliceblue; padding-top: 20px;;">SaveMyJson</span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,30 +15,7 @@
           <div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="services.html">services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="blog.html">Blog</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Pages
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="project.html">project</a>
-                  <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                  <a class="dropdown-item" href="elements.html">Elements</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="#">Kumawat Developers | Today Quote :  {{todayQuote}}</a>
               </li>
             </ul>
           </div>
@@ -55,8 +31,8 @@
   </div>
 </header>
 <!-- Header part end-->
-
-<!-- banner part start-->
+<!-- <br><br><br><br><br><br> <br><br><br><br><br> -->
+<!-- banner part <br>start-->
 <section class="banner_part">
   <div class="container">
     <div class="row align-items-center">
@@ -65,7 +41,6 @@
           <div class="banner_text_iner">
             <h5>Easy way to develop application for developemet</h5>
             <h1>Save my Json online</h1>
-            <a href="#" class="btn_1">Explore Work</a>
           </div>
         </div>
       </div>
@@ -73,7 +48,7 @@
   </div>
 </section>
 <!-- banner part start-->
-<div *ngIf="existingJson">
+<div *ngIf="existingJson" style="text-align: center;margin-top: 10px;">
   <h1>Recent your Json <span class="badge badge-secondary">{{existingJson.length}}</span></h1>
   <div *ngFor="let item of existingJson">
     <div>
@@ -107,7 +82,7 @@
 <button type="button" class="btn btn-secondary  btn-lg btn-block" (click)="postData()">Save Json</button>
 <br><br>
 <!--::cta_part start::-->
-<div class="cta_part">
+<!-- <div class="cta_part">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-7">
@@ -118,7 +93,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!--::cta_part end::-->
 
 
@@ -126,7 +101,7 @@
 <!-- <json-editor class="col-md-12" #editorExample style="min-height: 300px;" [options]="editorOptionsData" [data]="data" (change)="getData($event)"></json-editor> -->
 <!-- footer part start-->
 <footer class="footer-area">
-  <div class="container">
+  <!-- <div class="container">
     <div class="row justify-content-between">
       <div class="col-sm-6 col-md-3 col-xl-3">
         <div class="single-footer-widget footer_1">
@@ -196,7 +171,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
@@ -206,7 +181,9 @@
               <p class="footer-text m-0">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;
-                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | <a
+                  href="https://madewithlove.org.in" target="_blank">Made with <span
+                    style="color: #e74c3c">&hearts;</span> in India</a> |This template is made
                 with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
                   target="blank">Colorlib</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

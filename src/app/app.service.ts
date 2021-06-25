@@ -11,6 +11,7 @@ import { map, filter } from "rxjs/operators";
 export class AppService {
   url = 'https://callphpmydear.000webhostapp.com/';
   newUrl = "https://thread-frost-buffet.glitch.me/";
+  quotesUrl = "https://zenquotes.io/api/today";
   constructor(private httpClient: HttpClient) { }
 
 
@@ -42,6 +43,11 @@ export class AppService {
   }
   findJson(data): Observable<any> {
     return this.httpClient.get(this.newUrl + 'find?id=' + data).map((response: Response) => {
+      return response;
+    });
+  }
+  getQuotes(): Observable<any> {
+    return this.httpClient.get(this.newUrl + 'quotes').map((response: Response) => {
       return response;
     });
   }
