@@ -4,10 +4,14 @@ import { AppService } from '../app.service';
 import { AppModel, AppStatus } from '../shared/appModel';
 import { Router } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard'
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MessageService } from 'primeng/api';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 @Component({
   selector: 'app-newjson',
   templateUrl: './newjson.component.html',
-  styleUrls: ['./newjson.component.css']
+  styleUrls: ['./newjson.component.css'],
+  providers: [MessageService,ReCaptchaV3Service]
 })
 export class NewjsonComponent implements OnInit {
   public editorOptions: JsonEditorOptions;
@@ -31,7 +35,7 @@ export class NewjsonComponent implements OnInit {
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
 
-  constructor(private appService: AppService, router: Router, private _clipboardService: ClipboardService, private _router: Router,) {
+  constructor(private recaptchaV3Service: ReCaptchaV3Service, private appService: AppService, private messageService: MessageService, private ngxService: NgxUiLoaderService, router: Router, private _clipboardService: ClipboardService, private _router: Router,) {
     this.router = router;
     this.appModel = new AppModel();
 
@@ -52,6 +56,7 @@ export class NewjsonComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.existingJson = [];
 
     var jsonValues = JSON.parse(localStorage.getItem("savemyjson") || "[]");
@@ -59,10 +64,25 @@ export class NewjsonComponent implements OnInit {
     console.log(this.existingJson);
     this.getQuotes();
   }
+  public executeImportantAction(): void {
+    this.recaptchaV3Service.execute('importantAction')
+      .subscribe((token) => this.handleToken(token));
+  }
+  handleToken(val) {
+    console.log("handleToken")
+    console.log(val);
+    ;
 
+  }
   getData(event: Event) {
     this.data = this.editor.get();
     this.appService.post(this.data, 1);
+  }
+  showSuccess() {
+    this.messageService.add({ sticky: true, severity: 'success', summary: 'Success', detail: 'Success' });
+  }
+  showError() {
+    this.messageService.add({ sticky: true, severity: 'error', summary: 'Error', detail: 'Something went wrong.' });
   }
 
   postData() {
@@ -78,12 +98,15 @@ export class NewjsonComponent implements OnInit {
       isPro: "false",
       isActive: "true"
     }
+    this.ngxService.start(); // start foreground spinner of the master loader with 'default' taskId
+    // Stop the foreground loading after 5s
 
     this.appService.saveJson(userData).subscribe((res) => {
-      debugger
+
+      this.ngxService.stop();
       console.log(res._id);
       this._id = res._id;
-      this.url = "https://savemyjson.kumawat.co.in/" + res._id;
+      this.url = "https://savemyjson.kumawat.co.in/myjson/" + res._id;
       this.api = "https://thread-frost-buffet.glitch.me/find?id=" + res._id
       this.isApiLink = true;
       this.isURL = true;
@@ -96,7 +119,7 @@ export class NewjsonComponent implements OnInit {
       var jsonValues = JSON.parse(localStorage.getItem("savemyjson") || "[]");
       jsonValues.push(request);
       localStorage.setItem('savemyjson', JSON.stringify(jsonValues));
-
+      this.showSuccess();
     });
 
 
@@ -111,8 +134,17 @@ export class NewjsonComponent implements OnInit {
   copyAPI() {
     this._clipboardService.copy(this.api);
   }
+  copyLinks(val) {
+
+    this._clipboardService.copy(val);
+    window.open(val, "_blank");
+  }
   copyLink(val) {
-    this._clipboardService.copy(this.api);
+    console.log(val.replace("https://savemyjson.kumawat.co.in/", ""));
+
+    this._clipboardService.copy(val);
+    //  this._router.navigate([val.replace("https://savemyjson.kumawat.co.in/", "")]);
+    window.open(val, "_blank");
   }
   kkk() {
 
@@ -133,9 +165,7 @@ export class NewjsonComponent implements OnInit {
 
       data => {
         this.todayQuote = data[0].q;
-        console.log(this.todayQuote );
-        
-        //this.data = this.json;
+        console.log(this.todayQuote);
       });
 
 

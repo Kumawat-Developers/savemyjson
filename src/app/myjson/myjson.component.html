@@ -19,48 +19,15 @@
                   <span class="ti-menu"></span>
                 </button>
   
-                <div
-                  class="collapse navbar-collapse main-menu-item justify-content-center"
-                  id="navbarSupportedContent"
-                >
+              
+                <div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
                   <ul class="navbar-nav align-items-center">
                     <li class="nav-item">
-                      <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="services.html">services</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        href="blog.html"
-                        id="navbarDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Pages
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="project.html">project</a>
-                        <a class="dropdown-item" href="single-blog.html"
-                          >Single blog</a
-                        >
-                        <a class="dropdown-item" href="elements.html">Elements</a>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact</a>
+                      <a class="nav-link" href="#">Kumawat Developers | Today Quote :  {{todayQuote}}</a>
                     </li>
                   </ul>
                 </div>
+                  
                 <div class="social_icon d-none d-lg-block">
                   <a href="#"><i class="ti-facebook"></i></a>
                   <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -94,26 +61,13 @@
      
       <json-editor class="col-md-6" #editorExample style="min-height: 300px; width: 400px;" [options]="editorOptions" [data]="data" (change)="getData($event)"></json-editor>       
       <!--::cta_part start::-->
-      <div class="cta_part">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-7">
-              <div class="cta_iner">
-                <h1>Let’s createnpm something awesome together</h1>
-                <a href="#" class="btn_1">Discuss project</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!--::cta_part end::-->
    
    
    
-   <!-- <json-editor class="col-md-12" #editorExample style="min-height: 300px;" [options]="editorOptionsData" [data]="data" (change)="getData($event)"></json-editor> -->
-      <!-- footer part start-->
       <footer class="footer-area">
-        <div class="container">
+        <!-- <div class="container">
           <div class="row justify-content-between">
             <div class="col-sm-6 col-md-3 col-xl-3">
               <div class="single-footer-widget footer_1">
@@ -183,7 +137,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
@@ -192,8 +146,13 @@
                   <div class="col-lg-12">
                     <p class="footer-text m-0">
                       <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                      Copyright &copy;
+                      <script>document.write(new Date().getFullYear());</script> All rights reserved | <a
+                        href="https://madewithlove.org.in" target="_blank">Made with <span
+                          style="color: #e74c3c">&hearts;</span> in India</a> |This template is made
+                      with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="blank">Colorlib</a>
+                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                   </div>
                 </div>
@@ -201,10 +160,9 @@
             </div>
           </div>
         </div>
-     <!--    <img src="img/animate_icon/icon_2.png" class="animation_icon_2" alt=""> -->
-  
-      </footer>
-      <!-- footer part end-->
+        <!--    <img src="img/animate_icon/icon_2.png" class="animation_icon_2" alt=""> -->
+      
+      </footer>      <!-- footer part end-->
   
   <router-outlet></router-outlet>
   

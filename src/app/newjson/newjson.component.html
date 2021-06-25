@@ -1,3 +1,5 @@
+<ngx-ui-loader></ngx-ui-loader>
+
 <!--::header part start::-->
 <header class="main_menu home_menu">
   <div class="container">
@@ -15,7 +17,7 @@
           <div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-                <a class="nav-link" href="#">Kumawat Developers | Today Quote :  {{todayQuote}}</a>
+                <a class="nav-link" href="#">Kumawat Developers | Today Quote : {{todayQuote}}</a>
               </li>
             </ul>
           </div>
@@ -52,7 +54,7 @@
   <h1>Recent your Json <span class="badge badge-secondary">{{existingJson.length}}</span></h1>
   <div *ngFor="let item of existingJson">
     <div>
-      <div class="alert alert-success" role="alert" style="cursor: pointer;" (click)="copyLink(item.api)">
+      <div class="alert alert-success" role="alert" style="cursor: pointer;" (click)="copyLinks(item.api)">
         You Can access api from this url, click and copy url <span class="glyphicon glyphicon-copy"></span>:
         {{item.api}}
         <br> <span class="badge badge-secondary">{{item.timestamp| date:'hh:mm dd/MM/yyyy'}}</span>
@@ -66,12 +68,10 @@
     <hr>
   </div>
 </div>
-
-
-
+<button (click)="executeImportantAction()">Important action</button>
 <json-editor class="col-md-6" style="min-height: 300px; width: 400px;" [options]="editorOption" [data]="newData">
 </json-editor>
-
+<p-toast position="bottom-center"></p-toast>
 <div class="alert alert-success" role="alert" *ngIf="isApiLink" style="cursor: pointer;" (click)="copyAPI()">
   You Can access api from this url, click and copy url <span class="glyphicon glyphicon-copy"></span>: {{api}}
 </div>

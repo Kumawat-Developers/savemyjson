@@ -1,13 +1,16 @@
 
-import { ActivatedRoute ,Params} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { AppService } from '../app.service';
 import { AppModel, AppStatus } from '../shared/appModel';
+import { MessageService } from 'primeng/api';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-myjson',
   templateUrl: './myjson.component.html',
-  styleUrls: ['./myjson.component.css']
+  styleUrls: ['./myjson.component.css'],
+  providers: [MessageService]
 })
 export class MyjsonComponent implements OnInit {
   public data: any;
@@ -21,7 +24,7 @@ export class MyjsonComponent implements OnInit {
   public editorOption: JsonEditorOptions;
   @ViewChild(JsonEditorComponent, { static: true }) editor: JsonEditorComponent;
   @ViewChild(JsonEditorComponent, { static: true }) editorr: JsonEditorComponent;
-  constructor(private route: ActivatedRoute, private appService: AppService) {
+  constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private messageService: MessageService, private appService: AppService) {
     this.editorOptions = new JsonEditorOptions();
     this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
     this.editorOption = new JsonEditorOptions();
@@ -32,29 +35,39 @@ export class MyjsonComponent implements OnInit {
 
 
     this.route.params.subscribe((params: Params) => {
+      this.ngxService.start();
       let id = params["id"];
 
 
       console.log(id);
-    
+
       this.myJsonId = id;
       this.appService.findJson(id).subscribe(
-  
+
         data => {
           console.log(JSON.parse(data.json));
           this.json = JSON.parse(data.json);
           this.data = JSON.parse(data.json);
           //this.appModel = data;
-          console.log( JSON.stringify(data.json));
+          console.log(JSON.stringify(data.json));
           //this.data = this.json;
+          this.ngxService.stop();
+        }, (error) => {
+          this.ngxService.stop();
+          this.showError();
         });
     });
 
-    
+
 
 
   }
-
+  showSuccess() {
+    this.messageService.add({ sticky: true, severity: 'success', summary: 'Success', detail: 'Success' });
+  }
+  showError() {
+    this.messageService.add({ sticky: true, severity: 'error', summary: 'Error', detail: 'Something went wrong.' });
+  }
   getData(event: Event) {
 
     this.data = this.editor.get();

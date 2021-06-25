@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
+import { MessageService } from 'primeng/api';
 import { AppService } from './app.service';
 import { AppModel, AppStatus } from './shared/appModel';
 
@@ -7,7 +8,8 @@ import { AppModel, AppStatus } from './shared/appModel';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MessageService]
 })
 export class AppComponent {
 
@@ -24,7 +26,7 @@ export class AppComponent {
 
   title = 'Angularcall gfgfd';
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService,private messageService: MessageService) {
 
     this.appModel = new AppModel();
     this.editorOptions = new JsonEditorOptions();
@@ -38,6 +40,16 @@ export class AppComponent {
         this.appModel = data;
         this.data = this.json;
       });
+
+      setTimeout(() => {
+        console.log("dasdas");
+        
+        this.messageService.add({
+          severity: "success",
+          summary: "Success Message",
+          detail: "Order submitted"
+        });
+      }, 1000);
 
   }
   getData(event: Event) {
