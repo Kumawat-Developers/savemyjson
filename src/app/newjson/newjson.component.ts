@@ -121,7 +121,7 @@ export class NewjsonComponent implements OnInit {
       this.ngxService.stop();
       console.log(res._id);
       this._id = res._id;
-      this.url = "https://savemyjson.kumawat.co.in/myjson/" + res._id;
+      this.url = "https://savemyjson.kumawat.co.in/app/myjson/" + res._id;
       this.api = "https://thread-frost-buffet.glitch.me/find?id=" + res._id
       this.isApiLink = true;
       this.isURL = true;
@@ -144,7 +144,7 @@ export class NewjsonComponent implements OnInit {
 
   copyUrl() {
     this._clipboardService.copy(this.url);
-    this._router.navigate(['/myjson/' + this._id]);
+    this._router.navigate(['/app/myjson/' + this._id]);
   }
   copyAPI() {
     this._clipboardService.copy(this.api);

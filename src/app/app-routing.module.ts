@@ -6,27 +6,42 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
 
-  {
-    path: 'newjson',
+  // {
+  //   path: 'newjson',
 
-    component: NewjsonComponent
-  },
-
+  //   component: NewjsonComponent
+  // },
   {
     path: '',
-
-    component: NewjsonComponent
+    component: NewjsonComponent,
   },
 
   {
-    path: 'myjson/:id',
-    component: MyjsonComponent
+    path: 'app',
+    children: [
+      { path: 'newjson',
+       component: NewjsonComponent 
+      },
+      {
+        path: 'myjson/:id',
+        component: MyjsonComponent
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
+      },
+    ]
   },
-  {
-    path: '**',
 
-    component: NotFoundComponent
-  },
+  // {
+  //   path: 'myjson/:id',
+  //   component: MyjsonComponent
+  // },
+  // {
+  //   path: '**',
+
+  //   component: NotFoundComponent
+  // },
 ];
 
 @NgModule({
